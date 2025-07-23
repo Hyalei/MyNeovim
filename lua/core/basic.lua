@@ -1,3 +1,4 @@
+vim.g.mapleader = ";"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -13,3 +14,5 @@ vim.opt.expandtab = true  -- 按 Tab 键时插入空格而不是 Tab 字符
 vim.opt.autoread =  true
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.splitbelow = true  -- 水平分屏方向默认向下
+vim.opt.splitright = true  -- 垂直分屏方向默认向右
