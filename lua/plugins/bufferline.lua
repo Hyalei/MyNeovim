@@ -9,7 +9,7 @@ return {
         { "<S-Tabl>", ":BufferLineCycleNext<CR>", silent = true},
         { "<leader>bp", ":BufferLinePick<CR>", silent = true},
         { "<leader>bc", ":BufferLinePickClose<CR>", silent = true},
-        { "<leader>bo", ":BufferLinePickCloseOthers<CR>", silent = true},
+        { "<leader>bo", ":BufferLineCloseOthers<CR>", silent = true},
     },
     lazy = false,   -- 禁止懒加载
 }
