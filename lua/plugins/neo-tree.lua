@@ -1,25 +1,35 @@
-return {
+return { 
   "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",   
+  branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    -- Optional image support for file preview: See `# Preview Mode` for more information.
-    -- {"3rd/image.nvim", opts = {}},
-    -- OR use snacks.nvim's image module:
-    -- "folke/snacks.nvim",
   },
-  lazy = false, -- neo-tree will lazily load itself
-  ---@module "neo-tree"
-  ---@type neotree.Config?
+  lazy = false,
   opts = {
-        git_status = {
-            enabled = true,
-            autorefresh = true, -- ✅ 自动刷新 Git 状态
-        }
+    git_status = {
+      enabled = true,
+      autorefresh = true,
     },
+  },
   keys = {
     { "<leader>e", ":Neotree toggle<CR>", desc = "Toggle Neo-tree" },
   },
+  config = function()
+    vim.api.nvim_create_autocmd("FocusGained", {
+      callback = function()
+        require("neo-tree.sources.manager").refresh("filesystem")
+      end,
+      desc = "Refresh Neo-tree on focus gained",
+    })
+
+    vim.api.nvim_create_autocmd("ShellCmdPost", {
+      callback = function()
+        require("neo-tree.sources.manager").refresh("filesystem")
+      end,
+      desc = "Refresh Neo-tree after external shell commands",
+    })
+  end,
 }
+
